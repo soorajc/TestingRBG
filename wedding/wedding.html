@@ -43,7 +43,17 @@
           // every click, we make our model grow in size
           animatedMarker.addEventListener('click', function(ev, target){
               if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
-                window.open("intent://8xn9iq3lG_w/#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=market://details?id=com.google.android.youtube;end;")
+                  var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+                mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
+                app = "vnd.youtube://4KnNVK-udTU";
+                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+                    window.location = app;
+                    window.setTimeout(function() {
+                        window.location = mobileFallback;
+                    }, 25);
+                } else {
+                    window.location = desktopFallback;
+                }
                   //var vid = document.getElementById('penguin');
                   //console.log("I am clicked", vid);
                   //vid.play();
