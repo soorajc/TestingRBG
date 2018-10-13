@@ -12,6 +12,7 @@
 
     <body style='margin : 0px; overflow: hidden;'>
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+        <a id="anchorID" href="intent://8xn9iq3lG_w/#Intent;scheme=vnd.youtube;package=com.google.android.youtube;S.browser_fallback_url=market://details?id=com.google.android.youtube;end;"></a>
         <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
         <a-assets>
@@ -43,17 +44,7 @@
           // every click, we make our model grow in size
           animatedMarker.addEventListener('click', function(ev, target){
               if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
-                  var desktopFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
-                mobileFallback = "https://youtube.com/watch?v=4KnNVK-udTU",
-                app = "vnd.youtube://4KnNVK-udTU";
-                if( /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-                    window.location = app;
-                    window.setTimeout(function() {
-                        window.location = mobileFallback;
-                    }, 25);
-                } else {
-                    window.location = desktopFallback;
-                }
+                  document.getElementById("anchorID").click();
                   //var vid = document.getElementById('penguin');
                   //console.log("I am clicked", vid);
                   //vid.play();
