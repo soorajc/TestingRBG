@@ -28,8 +28,8 @@
             </a-entity>
         </a-marker> -->
 
-        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker"  preset='custom' type='pattern' url='./pattern-marker.patt'>
-            <a-video id="#penguin"  width="2" height="2" position="0 1 -1"></a-video>
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker"  preset='hiro'>
+            <a-box position='0 0.5 0' material='opacity: 0.5; color:red'></a-box>
         </a-marker>
 
         <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
@@ -37,23 +37,24 @@
         </a-scene> -->
     </body>
     <script>
-//     AFRAME.registerComponent('markerhandler', {
-//       init: function() {
-//           const animatedMarker = document.querySelector("#animated-marker");
+    AFRAME.registerComponent('markerhandler', {
+      init: function() {
+          const animatedMarker = document.querySelector("#animated-marker");
 
-//           // every click, we make our model grow in size
-//           animatedMarker.addEventListener('click', function(ev, target){
-//               if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
+          // every click, we make our model grow in size
+          animatedMarker.addEventListener('click', function(ev, target){
+              if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
+                  window.open("https://www.youtube.com/watch?v=M0KrU5zdUZI")
 //                   var vid = document.getElementById('vid');
 //                   console.log("I am clicked");
 //                   vid.play();
-//                   // const entity = document.querySelector('#animated-model');
-//                   // const scale = entity.getAttribute('scale');
-//                   // Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-//                   // entity.setAttribute('scale', scale);
-//               }
-//           });
-//     }});
+                  // const entity = document.querySelector('#animated-model');
+                  // const scale = entity.getAttribute('scale');
+                  // Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
+                  // entity.setAttribute('scale', scale);
+              }
+          });
+    }});
     </script>
 </html>
 
