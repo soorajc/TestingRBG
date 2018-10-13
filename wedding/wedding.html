@@ -8,7 +8,7 @@
     <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 
     <!-- import events.js script -->
-    <script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/events.js"></script>
+    <!--script src="https://rawgit.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/events.js"></script-->
 
     <body style='margin : 0px; overflow: hidden;'>
         <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
@@ -18,12 +18,16 @@
             <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
         </a-assets>
 
-        <a-marker preset="hiro" markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='barcode' value='6'>
+        <!-- <a-marker preset="hiro" markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='barcode' value='6'>
             <a-entity
                 id="animated-model"
                 gltf-model="#animated-asset"
                 scale="2">
             </a-entity>
+        </a-marker> -->
+
+        <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker"  preset='custom' type='pattern' url='./pattern-marker.patt'>
+            <a-video id="vid" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" width="0.5" height="0.5" position="0 0.5 0"></a-video>
         </a-marker>
 
         <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
@@ -31,20 +35,23 @@
         </a-scene>
     </body>
     <script>
-    // AFRAME.registerComponent('markerhandler', {
-    //   init: function() {
-    //       const animatedMarker = document.querySelector("#animated-marker");
-    //
-    //       // every click, we make our model grow in size
-    //       animatedMarker.addEventListener('click', function(ev, target){
-    //           if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
-    //               console.log("I am clicked")
-    //               // const entity = document.querySelector('#animated-model');
-    //               // const scale = entity.getAttribute('scale');
-    //               // Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-    //               // entity.setAttribute('scale', scale);
-    //           }
-    //       });
-    // }});
+    AFRAME.registerComponent('markerhandler', {
+      init: function() {
+          const animatedMarker = document.querySelector("#animated-marker");
+
+          // every click, we make our model grow in size
+          animatedMarker.addEventListener('click', function(ev, target){
+              if (animatedMarker.object3D.visible == true && ev.detail.cursorEl) {
+                  var vid = document.getElementById('vid');
+                  console.log("I am clicked");
+                  vid.play();
+                  // const entity = document.querySelector('#animated-model');
+                  // const scale = entity.getAttribute('scale');
+                  // Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
+                  // entity.setAttribute('scale', scale);
+              }
+          });
+    }});
     </script>
 </html>
+
